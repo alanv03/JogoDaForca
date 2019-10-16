@@ -1,3 +1,5 @@
+//Alan Vinicius de Souza RA 18119
+//Matheus Carriti Del Rey RA 18148
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
