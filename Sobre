@@ -1,0 +1,4 @@
+Neste projeto guiado pelo professor Matioli iremos fazer um jogo de Forca, onde conterá Palavras e suas definições para que o Usuário
+descubra quais são e assim, com o sistema de aleatoriedade o sistema irá sortear as palavras para que o jogo começe.
+Basicamente as palavras serão ocutadas com suas letras aparecendo conforme o Usuário as acerte, caso erre receberá um ponto de erro quando
+o limite for atingido o Usuário receberá um "GAME OVER".
