@@ -1,5 +1,3 @@
-//Alan Vinicius de Souza RA 18119
-//Matheus Carriti Del Rey RA 18148
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -109,7 +107,7 @@ NoSecreto * sorteiaPalavra(NoSecreto *l)
     return NULL;
 }
 
-//retorna a palavra que estÃ¡ na posicao 'pos' da lisata secreta
+//retorna a palavra que está na posicao 'pos' da lisata secreta
 NoSecreto * retornaPalavraPos(NoSecreto *l, int pos)
 {
     int n=1;
@@ -122,3 +120,104 @@ NoSecreto * retornaPalavraPos(NoSecreto *l, int pos)
     return p;
 }
 
+
+//remove a palavra que já foi sorteada da lista principal
+NoSecreto * removePalavra (NoSecreto * l, char palavra[31]) {
+    NoSecreto * aux = (NoSecreto*)malloc(sizeof(NoSecreto));
+    NoSecreto * anterior = (NoSecreto*)malloc(sizeof(NoSecreto));
+
+    for (aux = l; aux != NULL; aux = aux->prox) {
+        if ((aux == l) && (palavra == l->palavra)) {
+            l = aux->prox;
+            free(aux);
+            return l;
+        } else if (palavra == aux->palavra) {
+            anterior->prox = aux->prox;
+            free (aux);
+            return l;
+        }
+        anterior = aux;
+    }
+    return l;
+}
+
+NoLetra * insereLetra (NoLetra * l, char palavra[31], int pos) {
+    NoLetra * novo;
+    novo = (NoLetra *) malloc(sizeof(NoLetra));
+    novo->status = 0;
+    novo->letra = palavra[pos];
+    novo->prox = l;
+    l = novo;
+
+    return l;
+}
+
+void imprimePalavra (NoLetra * palavra) {
+    NoLetra * aux;
+    aux = (NoLetra *) malloc(sizeof(NoLetra));
+
+    printf("\n\n");
+
+    for (aux = palavra; aux!=NULL; aux = aux->prox) {
+        if (aux->status == 1) {
+            printf("%c ", aux->letra);
+        } else {
+            printf("_ ");
+        }
+    }
+
+    printf("\n\n");
+}
+
+void buscaLetra (NoLetra * l, char letra, int tentativas) {
+    NoLetra * aux;
+    aux = (NoLetra *) malloc(sizeof(NoLetra));
+    int encontrou = 0;
+
+    for (aux = l; aux!=NULL; aux = aux->prox) {
+        if (aux->letra == letra) {
+            aux->status = 1;
+            encontrou = 1;
+        }
+    }
+}
+
+int venceuOJogo (NoLetra * l) {
+    NoLetra * aux;
+    int venceu = 1;
+    aux = (NoSecreto *) malloc(sizeof(NoLetra));
+
+    for (aux = l; aux != NULL; aux = aux->prox) {
+        if (aux->status == 0) {
+            venceu = 0;
+            return venceu;
+        }
+    }
+
+    return venceu;
+}
+
+NoLetra * limpaListaPalavra (NoLetra * l) {
+    NoLetra * aux, * no = l;
+    aux = (NoLetra *) malloc(sizeof(NoLetra));
+
+    if (l == NULL) return NULL;
+
+    for (aux = l; aux != NULL; aux = aux->prox) {
+        no = aux->prox;
+        free(aux);
+        aux = no;
+    }
+    l = NULL;
+
+    return l;
+}
+
+int tamanhoPalavra(NoLetra *l) {
+    NoLetra * aux = (NoLetra *) malloc(sizeof(NoLetra));
+    int n = 0;
+
+    for (aux = l; aux != NULL; aux = aux->prox, n++) {}
+
+    return n;
+}
