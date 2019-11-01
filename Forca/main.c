@@ -9,7 +9,7 @@ void copyright(){
     system("clear");
     printf("=============================================================\n");
     printf("JOGO DA FORCA\n");
-    printf("Desenvolvido por: \n\t18119 - Alan Vinícius de Souza\n");
+    printf("Desenvolvido por: \n\t18119 - Alan VinÃ­cius de Souza\n");
     printf("\t18148 - Matheus Carriti Del Rey\n");
     printf("=============================================================\n\n");
 }
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
     imprimeListaSecreta(lstSecreta);
     tamanhoLista = tamanhoListaSecreta(lstSecreta);
 
-    do{
+    //do{
         CLEAR_SCREEN;
 
         /*printf("Digite seu nome: ");
@@ -120,13 +120,13 @@ int main(int argc, char *argv[]) {
 
         if (venceu == 1) {
             CLEAR_SCREEN;
-            printf("Voce venceu o jogo, %s!\n", nome);
-            printf("Pressione qualquer tecla para continuar...\n");
+            printf("Voce venceu o jogo!\n", nome);
+            //printf("Pressione qualquer tecla para continuar...\n");
             getchar();
         } else {
             CLEAR_SCREEN;
             printf("Incapacidade Intelectual\n");
-            printf("Pressione qualquer tecla para continuar...\n");
+            //printf("Pressione qualquer tecla para continuar...\n");
             getchar();
         }
 
@@ -134,11 +134,14 @@ int main(int argc, char *argv[]) {
             lstSecreta = removePalavra(lstSecreta, sorteada->palavra);
             letraPalavra = limpaListaPalavra(letraPalavra);
         }else{
-            printf("Não tem palavra disponível!\n\n");
+            printf("NÃ£o tem palavra disponÃ­vel!\n\n");
         }
-    }while(getchar()!='1');
+
+        for (int i=0; i<strlen(letrasDigitadas); i++) {
+            letrasDigitadas[i] = "";
+        }
+    //}while(loop<1);
 
 
     return 0;
 }
-
